@@ -11,9 +11,8 @@ public class Program
         builder.Services.AddSwaggerGen();
 
         var app = builder.Build();
-        app.UseExceptionHandler("/error");
 
-        app.UseHttpsRedirection();
+        app.UseExceptionHandler("/error");
 
         app.UseSwagger();
         app.UseSwaggerUI();
@@ -21,6 +20,9 @@ public class Program
         app.UseAuthorization();
 
         app.MapControllers();
+
+        var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+        app.Urls.Add($"http://*:{port}");
 
         app.Run();
     }
