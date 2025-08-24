@@ -1,3 +1,5 @@
+using AnalizerBackend.Services;
+
 namespace AnalizerBackend;
 
 public class Program
@@ -9,6 +11,7 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        builder.Services.AddSingleton<TelegramBotService>();
 
         var app = builder.Build();
 
